@@ -1,9 +1,9 @@
+import { useState } from "react";
 import ReactDOM from "react-dom";
 import React from "react";
 
 function Webpage() {
     const name = "Ratko";
-    const date = new Date();
 
     return <>
     <section>
@@ -12,12 +12,16 @@ function Webpage() {
         </header>
         <p></p>
     </section>
-    <Clock time={date} />
+    <Clock />
     </>
 }
 
-function Clock(props) {
-    return <p>It's currently: {props.time.toLocaleTimeString("HR")}</p>
+function Clock() {
+    const [time, setTime] = useState(new Date().toLocaleTimeString("HR"));
+
+    setInterval(() => setTime(new Date().toLocaleTimeString("HR")), 1000);
+
+    return <p>It's currently: {time}</p>
 }
 
 
